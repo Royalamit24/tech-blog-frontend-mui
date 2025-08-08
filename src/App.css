@@ -1,0 +1,209 @@
+body {
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Common Styles with dark mode support */
+:root {
+  --primary-color: #4c00e6;
+  --primary-hover: #3900b3;
+  --text-light: #ffffff;
+  --text-dark: #000000;
+  --background-light: #f5f5f5;
+  --background-dark: #121212;
+}
+
+/* Dark mode overrides for common elements */
+[data-theme='dark'] {
+  background-color: var(--background-dark);
+  color: var(--text-light);
+}
+
+[data-theme='light'] {
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
+
+/* Toast customization */
+.success-toast {
+  background-color: var(--primary-color) !important;
+  color: var(--text-light) !important;
+}
+
+.error-toast {
+  background-color: #ff3333 !important;
+  color: var(--text-light) !important;
+}
+
+.warn-toast {
+  background-color: #ff9800 !important;
+  color: var(--text-light) !important;
+}
+
+.already-account{
+  color: rgb(61, 57, 57);
+  font-weight: 400;
+}
+
+
+.sign-up-message{
+  font-size: 14px;
+  color: gray;
+  padding: 0;
+}
+.signupLoginBtn:hover {
+  background-color: white;
+  color: black;
+}
+
+.error-toast {
+  background-color: blue;
+}
+
+.input_form {
+  height: 24px;
+  width: 340px;
+  /* margin: 0px; */
+  margin-top: 8px;
+  margin-bottom: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 2px solid #227ad9;
+  outline: none; /* Remove the focus outline */
+}
+
+
+/* Add styles to the input when it is focused */
+.input_form .profile_bio :focus {
+  border: 1px solid  none; /* Add a border on focus if needed */
+}
+
+.date_of_birth_label {
+  width: 140px;
+  margin: 12px;
+}
+.date_of_birth {
+  width: 220px;
+  margin: 12px;
+  cursor: pointer;
+}
+.profile_bio_textarea {
+  margin: 8px;
+  width: 340px;
+  height: 80px;
+  border-radius: 10px;
+  outline: none; /* Remove the focus outline */
+  border: 2px solid #227ad9;
+  padding: 2px;
+}
+
+.profile_image {
+  border-radius: 10px;
+}
+.profile_form{
+margin-top: 30px;
+margin-left: 10px;
+}
+.profile_date{
+  margin-left: 12px;
+}
+
+.reset_password_form{
+  margin-top: 50px;
+}
+
+.input_form_error {
+  height: 24px;
+  width: 340px;
+  /* margin: 0px; */
+  margin-top: 6px;
+  margin-bottom: 4px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: 2px solid red;
+  outline: none; /* Remove the focus outline */   
+}
+
+.reset_password_container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  /* height: 100vh */
+}
+
+.reset-eye-visible{
+  background-color: transparent;
+  border: 0px;
+  /* width: 40px; */
+}
+
+.edit-blog-div {
+  height: 60px;
+  width: 120px;
+  float: right;
+  margin-left: 10px;
+  background-color: #f3f3f3;
+  border: 1px solid black;
+}
+
+.edit-delete-button {
+  border: 0px solid transparent;
+  width: 100%;
+  height: 20px;
+  background-color: #f3f3f3;
+  color: #227ad9;
+  cursor: pointer;
+}
+
+/* .createOneButton {
+  height: 40px !important;
+  width: 120px !important;
+  border-radius: 8px !important;
+  background-color: #4c00e6 !important;
+  color: white !important;
+} */
+
+.createOneButton:hover {
+  background-color: rgb(143, 65, 65);
+  color: white !important;
+}
+
+.createOneButton.MuiButton-root {
+  /* height: 40px !important; */
+  /* width: 120px !important;s */
+  /* border-radius: 8px !important; */
+  /* background-color: #4c00e6 !important; */
+  color: green !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.createOneButton.MuiButton-root:hover {
+  background-color:white !important;
+  color: green !important;
+}
