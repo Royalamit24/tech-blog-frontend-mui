@@ -53,9 +53,20 @@ export function useConnect({ setIsOpenToLogin }) {
 
     const handleLoginWithGoogle = () => {
         const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+        // Get API base URL dynamically
+        const getApiUrl = () => {
+            if (process.env.REACT_APP_API_URL) {
+                return process.env.REACT_APP_API_URL;
+            }
+            if (process.env.NODE_ENV === 'production') {
+                return `${window.location.protocol}//${window.location.hostname}:4005`;
+            }
+            return 'http://localhost:4005';
+        };
+
         const options = {
-            // redirect_uri: 'http://localhost:8081/api/sessions/oauth/google',
-            redirect_uri: 'http://localhost:4005/v1/auth/google/signup',
+            redirect_uri: `${getApiUrl()}/v1/auth/google/signup`,
             client_id: '700539504324-dv3j959fsvirnsbkqhc9939ibikd4ppm.apps.googleusercontent.com',
             access_type: 'offline',
             response_type: 'code',

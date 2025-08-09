@@ -1,5 +1,6 @@
 import { request } from "../../request";
 import { checkAuthentication } from '../../../utilities/common';
+import { getApiBaseUrl } from "../../../utilities/api-config";
 
 export async function getBlogs({ searchTerm = '', skip = 0, limit = 100, sortBy = 'desc' }) {
 
@@ -7,6 +8,10 @@ export async function getBlogs({ searchTerm = '', skip = 0, limit = 100, sortBy 
         'Content-Type': 'application/json',
         'accesstoken': `Bearer ${checkAuthentication()}`,
     };
-    const response = await request({ url: `http://localhost:4005/v1/blog/get-blogs?skip=${skip}&limit=${limit}&searchTerm=${searchTerm}&sortBy=${sortBy}`, headers: customHeaders, init: { method: 'get' } })
+    const response = await request({
+        url: `${getApiBaseUrl()}/v1/blog/get-blogs?skip=${skip}&limit=${limit}&searchTerm=${searchTerm}&sortBy=${sortBy}`,
+        headers: customHeaders,
+        init: { method: 'get' }
+    });
     return response ? response : [];
 }

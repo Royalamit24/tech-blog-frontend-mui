@@ -1,4 +1,2 @@
-module.exports = {
-    secretKey: 'GHITechblogABCDEF',
-    authToken: 'token',
-}
+export const secretKey = 'GHITechblogABCDEF';
+export const authToken = 'token';

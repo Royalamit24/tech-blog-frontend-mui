@@ -18,6 +18,13 @@
 .env.test.local
 .env.production.local
 
+# Deployment-specific environment files (contain sensitive data)
+.env.*.local
+config/production.json
+
+# Git backup
+.git_backup
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

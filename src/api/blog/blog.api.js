@@ -1,7 +1,8 @@
 import { request } from "../request";
 import { checkAuthentication } from '../../utilities/common';
 
-const BASE_URL = 'http://localhost:4005/v1/blog';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:4005';
+const BASE_URL = `${API_BASE_URL}/v1/blog`;
 
 export async function toggleLike(blogId) {
     const customHeaders = {

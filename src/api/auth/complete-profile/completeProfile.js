@@ -1,6 +1,7 @@
 import { request } from "../../request";
 import AuthService from "../../../utilities/auth-service";
-import {authToken} from "../../../utilities/constant"
+import {authToken} from "../../../utilities/constant";
+import { buildApiUrl, API_ENDPOINTS } from "../../../utilities/api-config";
 
 export async function completeProfile({firstName, lastName, dateOfBirth, bio, userId }) {
     const body = {
@@ -15,6 +16,10 @@ export async function completeProfile({firstName, lastName, dateOfBirth, bio, us
         'Content-Type': 'application/json',
         'accesstoken': `Bearer ${accessToken}`,
       };
-    const response = await request({ url: 'http://localhost:4005/v1/auth/complete-profile', headers: customHeaders, init: { body, method: 'put' } })
+    const response = await request({
+        url: buildApiUrl(API_ENDPOINTS.AUTH.COMPLETE_PROFILE),
+        headers: customHeaders,
+        init: { body, method: 'put' }
+    });
     return response;
 }

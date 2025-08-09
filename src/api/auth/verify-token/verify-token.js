@@ -1,4 +1,5 @@
 import { request } from "../../request";
+import { buildApiUrl, API_ENDPOINTS } from "../../../utilities/api-config";
 
 export async function verifyToken(token) {
     if (!token) {
@@ -16,7 +17,7 @@ export async function verifyToken(token) {
 
     try {
         const result = await request({
-            url: 'http://localhost:4005/v1/auth/validate-token',
+            url: buildApiUrl(API_ENDPOINTS.AUTH.VALIDATE_TOKEN),
             headers: customHeaders,
             init: { query, method: 'get' }
         });
