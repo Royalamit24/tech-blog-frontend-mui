@@ -38,13 +38,13 @@ npm run build
 echo "✅ Build completed successfully!"
 echo "📁 Build files are in the 'build' directory"
 echo ""
-echo "🔧 Next steps for EC2 deployment:"
-echo "1. Copy the 'build' folder to your EC2 instance"
-echo "2. Install and configure Nginx or Apache"
-echo "3. Make sure your backend API is running on port 4005"
-echo "4. Configure your security groups to allow traffic on ports 80, 443, and 4005"
-echo ""
-echo "📋 Example commands to copy to EC2:"
-echo "scp -r build/ ubuntu@$EC2_IP:~/tech-blog-frontend/"
+echo "📤 Uploading build files to EC2..."
+if [ ! -z "$EC2_IP" ]; then
+    echo "Copying build files to EC2..."
+    scp -r build/* ubuntu@$EC2_IP:/var/www/tech-blog-frontend/ 2>/dev/null || {
+        echo "⚠️  Direct upload failed. Please run manually:"
+        echo "scp -i your-key.pem -r build/* ubuntu@$EC2_IP:/var/www/tech-blog-frontend/"
+    }
+fi
 echo ""
 echo "🌐 Your app will be accessible at: http://$EC2_IP"

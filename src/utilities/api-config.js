@@ -6,17 +6,26 @@ export const getApiBaseUrl = () => {
     // 3. Localhost (fallback for development)
 
     if (process.env.REACT_APP_API_URL) {
+        console.log('Using API URL from environment:', process.env.REACT_APP_API_URL);
         return process.env.REACT_APP_API_URL;
     }
 
     // In production, use the same domain as the frontend
     if (process.env.NODE_ENV === 'production') {
-        const protocol = window.location.protocol;
-        const hostname = window.location.hostname;
-        return `${protocol}//${hostname}:4005`;
+        if (typeof window !== 'undefined') {
+            const protocol = window.location.protocol;
+            const hostname = window.location.hostname;
+            const apiUrl = `${protocol}//${hostname}:4005`;
+            console.log('Auto-detected API URL:', apiUrl);
+            return apiUrl;
+        } else {
+            console.warn('Window object not available, falling back to localhost');
+            return 'http://localhost:4005';
+        }
     }
 
     // Development fallback
+    console.log('Using development API URL');
     return 'http://localhost:4005';
 };
 

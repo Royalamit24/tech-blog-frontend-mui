@@ -52,13 +52,31 @@ REACT_APP_ENV=production
 PUBLIC_IP=$PUBLIC_IP
 EOF
 
+# Check available memory
+echo "🔍 Checking available memory..."
+free -h
+
+# Add swap if memory is low (less than 2GB)
+MEMORY_KB=$(grep MemTotal /proc/meminfo | awk '{print $2}')
+MEMORY_GB=$((MEMORY_KB / 1024 / 1024))
+
+if [ $MEMORY_GB -lt 2 ]; then
+    echo "⚠️  Low memory detected ($MEMORY_GB GB). Adding swap space..."
+    sudo fallocate -l 1G /swapfile 2>/dev/null || sudo dd if=/dev/zero of=/swapfile bs=1024 count=1048576
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+    echo "✅ Swap space added"
+fi
+
 # Install dependencies
 echo "📦 Installing project dependencies..."
 npm install
 
-# Build the project
+# Build the project with increased memory and environment
 echo "🏗️ Building production version..."
-npm run build
+echo "📍 Using API URL: http://$PUBLIC_IP:4005"
+NODE_OPTIONS="--max-old-space-size=4096" REACT_APP_API_URL="http://$PUBLIC_IP:4005" npm run build
 
 # Copy build files to web directory
 echo "📁 Copying build files..."
